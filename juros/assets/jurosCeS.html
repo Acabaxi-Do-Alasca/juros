@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juros</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        label, input {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section>
+            <h1>Calculador de juros</h1>
+            <form action="">
+                <label for="valor">Valor Principal</label>
+                <input type="text" placeholder="valor" required id="valor" style="font-size: 20px;">
+                <label for="juros">Taxa de juros</label>
+                <input type="text" placeholder="juros" required id="juros" style="font-size: 20px;">
+                <label for="periodo">Periodo</label>
+                <input type="text" placeholder="periodo" required id="periodo" style="font-size: 20px;">
+            </form>
+            <button type="button" id="btn">Juros composto</button>
+            <button type="button" id="btn2">Juros Simples</button>
+            <p id="resposta"></p>
+        </section>
+    </div>
+
+    <script>
+        var res = document.getElementById("resposta")
+        var butao1 = document.getElementById("btn")
+        var butao2 = document.getElementById("btn2")
+
+        function juros_simples(){
+            var valor_a = parseFloat(document.getElementById("valor").value)
+            var juros_v = parseFloat(document.getElementById("juros").value)
+            var per_a = parseFloat(document.getElementById("periodo").value)
+
+            var result_js = valor_a + (valor_a * (juros_v / 10) * per_a)
+            res.innerHTML = result_js
+        }
+
+        function juros_compostos(){
+            var valor_a = parseFloat(document.getElementById("valor").value)
+            var juros_v = parseFloat(document.getElementById("juros").value)
+            var per_a = parseFloat(document.getElementById("periodo").value)
+
+            var result_jc = valor_a * Math.pow((1 + (juros_v / 10)), per_a)
+            res.innerHTML = result_jc
+        }
+
+        butao1.addEventListener("click", juros_compostos)
+        butao2.addEventListener("click", juros_simples)
+    </script>
+</body>
+</html>
